@@ -33,17 +33,35 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// ユーザ情報の取得
-router.get("/:id", async (req, res) => {
+// // ユーザ情報の取得
+// router.get("/:id", async (req, res) => {
+//   try {
+//     // mongooseのメソッドでidが一致するユーザー情報取得
+//     const user = await User.findById(req.params.id);
+//     // パスワード等の隠したいパラメータを分割代入しておく
+//     const { password, updatedAt, ...other } = user._doc;
+//     // otherのみ表示
+//     return res.status(200).json(other);
+//   } catch (err) {
+//     return res.status(500).json(err);
+//   }
+// });
+
+// クエリでユーザ情報の取得
+router.get("/", async (req, res) => {
+  const userId = req.query.userId;
+  const username = req.query.username;
   try {
     // mongooseのメソッドでidが一致するユーザー情報取得
-    const user = await User.findById(req.params.id);
+    const user = userId
+      ? await User.findById(userId)
+      : await User.findOne({ username: username }); 
     // パスワード等の隠したいパラメータを分割代入しておく
     const { password, updatedAt, ...other } = user._doc;
     // otherのみ表示
-    res.status(200).json(other);
+    return res.status(200).json(other);
   } catch (err) {
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
