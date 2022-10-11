@@ -57,8 +57,21 @@ yarn dev
 
 
 ### 2-2. 構成技術
+- front
+  - "axios": "^1.1.2"
+  - "react": "^18.2.0"
+  - "react-dom": "^18.2.0"
+  - "react-router-dom": "^6.4.2"
+  - "timeago.js": "^4.0.2"
+- back
+  - "dotenv": "^16.0.3"
+  - "express": "^4.18.1"
+  - "helmet": "^6.0.0"
+  - "mongoose": "^6.6.4"
+  - "multer": "^1.4.5-lts.1"
+  - "nodemon": "^2.0.20"
 
-## 環境変数
+## 3. 環境変数
 [react-sns-front-output](https://github.com/massu-159/react-sns-front-output)側で
 
 .envを作成し、環境変数を設定。
